@@ -55,9 +55,12 @@ src/
 python src/main.py
 ```
 
+## Using Git 
+
+In order to work collaboratively as a team, we need to utilize a tool called Git. Git is a version control system 
 ## Project Requirements
 
-This template provides a foundation for what we can currently do in-game:
+Below generally describes the current state of the project (4/22/2025):
 
 1. **Character System**
    - Base Character class with attributes like name, health, strength, etc.
