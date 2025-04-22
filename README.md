@@ -57,7 +57,22 @@ python src/main.py
 
 ## Using Git 
 
-In order to work collaboratively as a team, we need to utilize a tool called Git. Git is a version control system 
+In order to work collaboratively as a team, we need to utilize a tool called Git. Git is a version control system with many features to make working collaboratively easy across various team sizes and standards. 
+
+For our project, each of you will need to work on your own branch. a **branch** is a copy of the **main** branch's code, but is typically meant for specific bug fixes or features. When you are finished with your bug fix/feature/TODO task, inform the lead software developer (Mr. Johnson) and a code review will be scheduled. After a successful review, your branch will be merged into the main branch. 
+
+Here is a list of git commands you will need to know:
+
+ - **git fetch**: Requests the most recent commits or changes from a remote repo (github).
+ - **git status**: A quick report on the current state of your local environment.
+ - **git add .**: Stages new files and changes to the list of items to be committed. The . simply denotes “all” changes in the current directory.
+ - **git commit -a**: Creates a commit of the current changes within your working branch. The -a simply commits all changes made to the branch.
+ - **git push**: Pushes all local changes to origin, the remote systems at GitHub that holds your production code.
+ - **git branch name_of_new_brach**: Creates a new branch based off of your current branch (probably main)
+ - **git checkout name_of_branch**: Checks out the given branch for local development.
+
+Git can famously get very confusing very fast. Try not to get lost in the weeds with what Git is capable of... the rabbit hole is pretty deep. Fortunately, nearly all Git commands-gone-wrong have built-in measures so that data isn't ever truly lost. Just ask me if you need help!
+ 
 ## Project Requirements
 
 Below generally describes the current state of the project (4/22/2025):
