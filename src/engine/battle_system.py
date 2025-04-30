@@ -10,7 +10,7 @@ class BattleSystem:
     
     def __init__(self):
         """Initialize a new BattleSystem."""
-        self.actions = ["attack", "use item", "flee"]
+        self.actions = ["attack", "use ability", "use item", "flee"]
         # TODO: Add more combat actions like "defend" to reduce damage or "special attack"
     
     def start_battle(self, player, enemy):
@@ -48,6 +48,9 @@ class BattleSystem:
                 
                 if action == "attack":
                     damage = player.attack(enemy)
+                    # TODO: Change the attack text to be weapon-specific (e.g. "You slash at the goblin with your sword!"). Perhaps generate custom text base on the power of your attack.
+                    # TODO: Add critical hit chance based on random variables (dice roll, etc.)
+                    # TODO Modify total damage based on enemy defense and armor
                     print(f"You attack {enemy.name} for {damage} damage!")
                     
                 elif action == "use item":
@@ -78,6 +81,32 @@ class BattleSystem:
                         print("Invalid choice. Try again.")
                         continue  # Skip turn
                     
+                elif action == "use ability":
+                    # Get usable abilities from player character
+                    usable_abilities = [ability for ability in player.abilities]
+                    print("\nAvailable abilities:")
+                    for i, ability in enumerate(usable_abilities, start=1):
+                        print(f"{i}. {ability}")
+                    print(f"{len(usable_abilities) + 1}. Cancel")
+
+                    try:
+                        choice = int(input("Choose an ability to use (enter number): "))
+                        if 1 <= choice <= len(usable_abilities):
+                            selected_ability = usable_abilities[choice - 1]
+                            result = f"Selected ability was {selected_ability}. Use the ability here."  # Placeholder for ability usage logic
+                            print(result)
+                        else:
+                            print("Invalid choice. Try again.")
+                            continue
+                    except ValueError:
+                        print("Invalid choice. Try again.")
+                        continue
+
+                    if not usable_abilities:
+                        print("You don't have any usable abilities!")
+                        continue
+                    
+                
                 elif action == "flee":
                     # 50% chance to flee
                     if random.random() < 0.5:

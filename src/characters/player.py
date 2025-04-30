@@ -28,7 +28,35 @@ class Player(Character):
         self.equipped_armor = None
         self.current_location = None
         # TODO: Add player gold/currency attribute for buying items from merchants
+
         # TODO: Add player class attribute (warrior, mage, rogue) that affects gameplay overall (e.g. starting stats, available abilities, etc.)
+        print("Choose your class:")
+        print("1. Warrior (High Strength, Moderate Defense, Moderate Health)")
+        print("2. Mage (Magical Abilities, Low Defense, Low Health)")
+        print("3. Rogue (Rogue Cunning, Moderate Strength, Low Health)")
+        choice = input("Enter the number of your choice: ")
+        while True:
+            if choice == "1":
+                self.strength += 5
+                self.defense += 2
+                self.char_class = "Warrior"
+                self.abilities = ["Battle Cry"]  # Level 1 Warrior Ability
+                break
+            elif choice == "2":
+                self.strength -= 2
+                self.defense -= 1
+                self.char_class = "Mage"
+                self.abilities = ["Magic Missle"]  # Level 1 Mage Ability
+                break
+            elif choice == "3":
+                self.strength += 2
+                self.defense += 1
+                self.char_class = "Rogue"
+                self.abilities = ["Conceal", "Backstab"]  # Level 1 Rogue Abilities
+                break
+            else:
+                print("Invalid choice. Please choose again.")
+            
     
     def gain_experience(self, amount):
         """
@@ -56,17 +84,43 @@ class Player(Character):
         self.experience -= self.experience_to_next_level
         self.experience_to_next_level = int(self.experience_to_next_level * 1.5)
         
-        # Increase stats
-        old_max_health = self.max_health
-        self.max_health += 10
-        self.health += (self.max_health - old_max_health)  # Heal by the amount max health increased
-        self.strength += 2
-        self.defense += 1
-        
-        # TODO: Add different stat increases based on player class
+        # TODO: Add different stat increases based on player class 
+        # TODO: Expand on current implementation and appropriately refactor level-up logic     
+        # Increase stats based on class
+        if self.char_class == "Warrior":
+            self.level_up_warrior()
+        elif self.char_class == "Mage":
+            self.level_up_mage()
+        elif self.char_class == "Rogue":
+            self.level_up_rogue()
         
         return f"Congratulations! You are now level {self.level}!"
     
+    def level_up_warrior(self):
+        """Level up stats for Warrior class."""
+        self.max_health += 10
+        self.health = self.max_health
+        self.strength += 3
+        self.defense += 2
+        # TODO: Add Warrior abilities such as taunt or battle cry
+
+    
+    def level_up_mage(self):
+        """Level up stats for Mage class."""
+        self.max_health += 5
+        self.health = self.max_health
+        self.strength += 2
+        self.defense += 1
+        # TODO: Add magical abilities for Mage class
+
+    def level_up_rogue(self):
+        """Level up stats for Rogue class."""
+        self.max_health += 7
+        self.health = self.max_health
+        self.strength += 2
+        self.defense += 1
+        # TODO: Add Rogue abilities such as stealth or critical hit chance
+        
     def equip_weapon(self, weapon):
         """
         Equip a weapon.
@@ -147,7 +201,18 @@ class Player(Character):
     
     # TODO: Add method to allow player to buy items from merchants
     
-    # TODO: Add special abilities based on player class
+    def use_ability(self, ability_name, target=None):
+        """
+        Use a special ability based on player class.
+        
+        Args:
+            ability_name (str): The name of the ability to use
+            target (Character): The target character for abilities that require a target
+            
+        """
+        ## MJ: Implement class-specific abilities here
+        ## User should choose from available ability list during combat
+        ## Logic for using abilities can be added here. Remember that damage should be returned as an int 
     
     def __str__(self):
         """Return string representation of the player."""

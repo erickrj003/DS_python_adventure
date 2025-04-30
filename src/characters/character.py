@@ -22,7 +22,8 @@ class Character:
         self.max_health = max_health
         self.strength = strength
         self.defense = defense
-        self.inventory = []  # Composition: Character has an inventory
+        self.inventory = [] 
+        self.char_class = "Character"  # Default class type
         
     def is_alive(self):
         """Check if the character is alive."""
