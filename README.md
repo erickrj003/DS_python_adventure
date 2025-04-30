@@ -136,6 +136,7 @@ This project is provided for educational purposes only.
 Version 0.1.1:
  - Added basic Ability feature to Player characters based on their class. More abilities need to be added as players level up.
  - Minor bug fixes
+ - Added some TODOs
 
 Version 0.0.1:
  - Initial test version of the game with base features only
