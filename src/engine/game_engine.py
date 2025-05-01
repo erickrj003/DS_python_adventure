@@ -25,18 +25,19 @@ class GameEngine:
         # TODO: Add quest system to track player progress
         # TODO: Add game time/day-night cycle that affects gameplay
     
+    # Starts the game, sets the running variable to true, uses the ui class to run methods like display welcome, get main menu choice 
     def start_game(self):
         """Start the game."""
-        self.running = True
-        self.ui.display_welcome()
+        self.running = True # Game is now running
+        self.ui.display_welcome() # Uses the method from the ui to display the welcome
         
         # Get player's choice
-        choice = self.ui.get_main_menu_choice()
+        choice = self.ui.get_main_menu_choice() # Uses ui method to get the main menu choice: has a while loop with the question and asks for input, then returns the question
         
         if choice == "new":
-            self.new_game()
+            self.new_game() # Runs this class's methods
         elif choice == "load":
-            self.load_game()
+            self.load_game() # 
         elif choice == "quit":
             self.ui.display_goodbye()
             self.running = False
@@ -63,6 +64,7 @@ class GameEngine:
         self.ui.display_introduction(self.player)
         
         # TODO: Add character class selection during new game
+        # 
     
     def load_game(self):
         """Load a saved game."""
