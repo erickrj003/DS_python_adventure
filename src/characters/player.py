@@ -102,7 +102,14 @@ class Player(Character):
         self.health = self.max_health
         self.strength += 3
         self.defense += 2
-        # TODO: Add Warrior abilities such as taunt or battle cry
+        # TODO: Add Warrior abilities
+
+        if self.level == 3:
+            self.abilities.append("Shield Bash")
+        elif self.level == 5:
+            self.abilities.append("Cleave")
+        elif self.level == 10:
+            self.abilities.append("Power Attack")
 
     
     def level_up_mage(self):
@@ -119,7 +126,7 @@ class Player(Character):
         self.health = self.max_health
         self.strength += 2
         self.defense += 1
-        # TODO: Add Rogue abilities such as stealth or critical hit chance
+        # TODO: Add Rogue abilities
         
     def equip_weapon(self, weapon):
         """
@@ -211,7 +218,7 @@ class Player(Character):
             
         """
         ## MJ: Implement class-specific abilities here
-        ## User should choose from available ability list during combat
+        
         ## Logic for using abilities can be added here. Remember that damage should be returned as an int 
     
     def __str__(self):

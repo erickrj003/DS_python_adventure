@@ -93,6 +93,8 @@ class BattleSystem:
                         choice = int(input("Choose an ability to use (enter number): "))
                         if 1 <= choice <= len(usable_abilities):
                             selected_ability = usable_abilities[choice - 1]
+                            # use ability
+                            ability_result = player.use_ability(selected_ability, enemy)
                             result = f"Selected ability was {selected_ability}. Use the ability here."  # Placeholder for ability usage logic
                             print(result)
                         else:
