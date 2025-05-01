@@ -1,0 +1,36 @@
+{
+    "Mage":
+    [
+        {
+            "name": "Magic Missle",
+            "type": "offensive",
+            "description": "Launch a magical missile that seeks out an enemy, dealing damage on impact.",
+            "cooldown": 8
+        }
+    ],
+    "Warrior":
+    [
+        {
+            "name": "Battle Cry",
+            "type": "support",
+            "description": "Let out a fierce battle cry, increasing the player's attack power for a short time.",
+            "cooldown": 10
+        }
+    ],
+    "Rogue":
+    [
+        {
+            "name": "Conceal",
+            "type": "defensive",
+            "description": "Attempt to hide from enemies, becoming invisible for a short duration.",
+            "cooldown": 12
+
+        },
+        {
+            "name": "Backstab",
+            "type": "offensive",
+            "description": "Quickly strike an enemy from behind, dealing extra damage.",
+            "cooldown": 6
+        }
+    ]
+}
