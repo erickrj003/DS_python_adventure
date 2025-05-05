@@ -30,6 +30,7 @@ class NPC(Character):
         self.wares = wares or []
         self.quest = None
         self.friendly = True  # Most NPCs are friendly by default
+        self.char_class = "NPC"  # Default class type
         
     def talk(self, keyword=None):
         """

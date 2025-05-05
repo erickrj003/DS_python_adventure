@@ -1,5 +1,5 @@
 # World class
-
+import random
 from world.location import Location
 from characters.enemy import Enemy
 from items.weapon import Weapon
@@ -16,6 +16,20 @@ class World:
         self.locations = {}
         self.starting_location = None
         # TODO: Add weather system that affects gameplay (e.g., rain slows movement, snow reduces visibility)
+
+    def random_event(self):
+    # Random Event
+        chance = random.randint(100,101)
+        if chance >= 1 and chance <= 74: # 75% chance that nothing will happen
+            pass
+        elif chance >= 75 and chance <= 89: # 15% chance of getting robbed
+            self.ui.display_message("You have been robbed!")
+            # Player should lose money and items
+        else:
+            self.ui.display_message("You have been struck by lightning!")
+            damage = self.player.take_damage(random.randint(10,20))
+            self.ui.display_message(f"You took {damage} damage!")
+            # Player should lose health
     
     def add_location(self, location_id, location):
         """
@@ -37,6 +51,7 @@ class World:
         Returns:
             Location or None: The location with the given ID or None if not found
         """
+        self.random_event()
         return self.locations.get(location_id)
     
     def set_starting_location(self, location_id):

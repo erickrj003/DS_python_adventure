@@ -2,11 +2,13 @@
 
 import sys
 import time
+import random
 from characters.player import Player
 from world.world import World
 from ui.user_interface import UserInterface
 from engine.battle_system import BattleSystem
 from engine.save_load import SaveLoad
+
 
 class GameEngine:
     """
@@ -16,6 +18,7 @@ class GameEngine:
     
     def __init__(self):
         """Initialize a new GameEngine."""
+        # These parameters are connections to the other game modules
         self.player = None
         self.world = World()
         self.ui = UserInterface()
@@ -186,15 +189,17 @@ class GameEngine:
                         health_status += "(You're injured. You might want to heal soon.)"
                     
                     self.ui.display_message(health_status)
+            else:
+                pass
+
+
             
-            # TODO: Add random events that can occur while exploring
             
             # Get player command
             command = self.ui.get_command()
             
             # Process command
             self.process_command(command)
-
             # TODO: Add a delay between commands to simulate a more realistic game
             # TODO: Use a helper function to keep the game screen clean
     
