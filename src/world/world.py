@@ -156,6 +156,9 @@ class World:
         leather_armor = Armor("Leather Armor", "A simple leather armor that provides basic protection.", 10, 2)
         healing_potion = Consumable("Healing Potion", "A red potion that restores health.", 15, "health", 25)
         strength_potion = Consumable("Strength Potion", "A blue potion that temporarily increases strength.", 20, "strength", 5)
+        bow_and_arrow = Weapon("Bow and Arrow", "A bow and arrows dropped from dark skeletons used to shoot from a distance.", 15, 5)
+        iron_helmet= Armor("A iron helmet", "a strong helmet used for head protection.,", 15, 4)
+
         
         # Create enemies and add them to locations
         
@@ -196,7 +199,14 @@ class World:
                               healing_potion
                           ])
         dark_cave.add_enemy(cave_troll)
-        
+
+        dark_cave_skeleton = Enemy("Dark cave skeleton", health= 30, max_health= 30, strength= 30, defense= 2, level=5, experience_reward= 75,
+                                    loot_table= [
+                                        bow_and_arrow, 
+                                        healing_potion,
+                                        iron_helmet
+                                        ])
+        dark_cave.add_enemy(dark_cave_skeleton)
         # TODO: Add more enemies with different stats and loot tables
         # TODO: Add NPCs to appropriate locations
         
