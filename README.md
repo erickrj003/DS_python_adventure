@@ -75,7 +75,7 @@ Git can famously get very confusing very fast. Try not to get lost in the weeds 
  
 ## Project Requirements
 
-Below generally describes the current state of the project (4/22/2025):
+Below generally describes the current state of the project (4/30/2025):
 
 1. **Character System**
    - Base Character class with attributes like name, health, strength, etc.
@@ -108,7 +108,7 @@ Here are some examples of ways to extend this project:
 
 - Add a quest system with objectives and rewards
 - Implement a shop/economy system with buying and selling
-- Create special abilities for characters
+- Create special abilities for characters (Partially implemented)
 - Add random events that occur while traveling
 - Design procedurally generated dungeons or areas
 - Add more character classes with unique abilities
@@ -130,5 +130,15 @@ Most classes and methods are documented with docstrings. Each file includes a fi
 ## License
 
 This project is provided for educational purposes only.
+
+## Version
+
+Version 0.1.1:
+ - Added basic Ability feature to Player characters based on their class. More abilities need to be added as players level up.
+ - Minor bug fixes
+ - Added some TODOs
+
+Version 0.0.1:
+ - Initial test version of the game with base features only
 
 ---
