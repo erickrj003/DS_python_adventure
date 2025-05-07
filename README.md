@@ -133,6 +133,10 @@ This project is provided for educational purposes only.
 
 ## Version
 
+Version 0.2.1:
+ - JS: Added random_event scaffolding and example use case in the World class.
+ - BL: Added a new dark cave location with a special encounter. Also added some additional enemy drops.
+
 Version 0.1.1:
  - Added basic Ability feature to Player characters based on their class. More abilities need to be added as players level up.
  - Minor bug fixes
