@@ -2,11 +2,13 @@
 
 import sys
 import time
+import random
 from characters.player import Player
 from world.world import World
 from ui.user_interface import UserInterface
 from engine.battle_system import BattleSystem
 from engine.save_load import SaveLoad
+
 
 class GameEngine:
     """
@@ -16,6 +18,7 @@ class GameEngine:
     
     def __init__(self):
         """Initialize a new GameEngine."""
+        # These parameters are connections to the other game modules
         self.player = None
         self.world = World()
         self.ui = UserInterface()
@@ -25,18 +28,19 @@ class GameEngine:
         # TODO: Add quest system to track player progress
         # TODO: Add game time/day-night cycle that affects gameplay
     
+    # Starts the game, sets the running variable to true, uses the ui class to run methods like display welcome, get main menu choice 
     def start_game(self):
         """Start the game."""
-        self.running = True
-        self.ui.display_welcome()
+        self.running = True # Game is now running
+        self.ui.display_welcome() # Uses the method from the ui to display the welcome
         
         # Get player's choice
-        choice = self.ui.get_main_menu_choice()
+        choice = self.ui.get_main_menu_choice() # Uses ui method to get the main menu choice: has a while loop with the question and asks for input, then returns the question
         
         if choice == "new":
-            self.new_game()
+            self.new_game() # Runs this class's methods
         elif choice == "load":
-            self.load_game()
+            self.load_game() # 
         elif choice == "quit":
             self.ui.display_goodbye()
             self.running = False
@@ -63,6 +67,7 @@ class GameEngine:
         self.ui.display_introduction(self.player)
         
         # TODO: Add character class selection during new game
+        # 
     
     def load_game(self):
         """Load a saved game."""
@@ -184,8 +189,11 @@ class GameEngine:
                         health_status += "(You're injured. You might want to heal soon.)"
                     
                     self.ui.display_message(health_status)
+            else:
+                pass
+
+
             
-            # TODO: Add random events that can occur while exploring
             
             # Get player command
             command = self.ui.get_command()

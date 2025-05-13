@@ -29,7 +29,9 @@ class Enemy(Character):
         self.level = level
         self.experience_reward = experience_reward
         self.loot_table = loot_table or []
+        
         # TODO: Add enemy type attribute (e.g., humanoid, beast, undead) for combat advantages/disadvantages
+        self.char_class = "Enemy"  # Default class type
         
     def get_loot(self):
         """

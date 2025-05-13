@@ -1,3 +1,5 @@
+# World class
+import random
 from world.location import Location
 from characters.enemy import Enemy
 from items.weapon import Weapon
@@ -13,11 +15,12 @@ class World:
         """Initialize a new World."""
         self.locations = {}
         self.starting_location = None
+        # TODO: Add weather system that affects gameplay (e.g., rain slows movement, snow reduces visibility)
         self.time_minutes = 0  # Game time in minutes
         self.time_of_day = "Day"  # Can be "Day" or "Night"
 
     def update_time(self, minutes_passed=10):
-        """
+         """
         Advance time in the world and update day/night cycle.
         """
         self.time_minutes += minutes_passed
@@ -26,10 +29,34 @@ class World:
         else:
             self.time_of_day = "Night"
 
+    def random_event(self):
+    # Random Event
+        chance = random.randint(100,101)
+        if chance >= 1 and chance <= 74: # 75% chance that nothing will happen
+            pass
+        elif chance >= 75 and chance <= 89: # 15% chance of getting robbed
+            self.ui.display_message("You have been robbed!")
+            # Player should lose money and items
+        else:
+            self.ui.display_message("You have been struck by lightning!")
+            damage = self.player.take_damage(random.randint(10,20))
+            self.ui.display_message(f"You took {damage} damage!")
+            # Player should lose health
+
     def add_location(self, location_id, location):
         self.locations[location_id] = location
 
     def get_location(self, location_id):
+        """
+        Get a location by its ID.
+        
+        Args:
+            location_id (str): The ID of the location to get
+            
+        Returns:
+            Location or None: The location with the given ID or None if not found
+        """
+        self.random_event()
         return self.locations.get(location_id)
 
     def set_starting_location(self, location_id):
@@ -91,7 +118,13 @@ class World:
         leather_armor = Armor("Leather Armor", "A simple leather armor that provides basic protection.", 10, 2)
         healing_potion = Consumable("Healing Potion", "A red potion that restores health.", 15, "health", 25)
         strength_potion = Consumable("Strength Potion", "A blue potion that temporarily increases strength.", 20, "strength", 5)
+        bow_and_arrow = Weapon("Bow and Arrow", "A bow and arrows dropped from dark skeletons used to shoot from a distance.", 15, 5)
+        iron_helmet= Armor("A iron helmet", "a strong helmet used for head protection.,", 15, 4)
 
+        
+        # Create enemies and add them to locations
+        
+        # Forest Path Enemies
         wolf = Enemy("Wolf", health=30, max_health=30, strength=6, defense=2, 
                     level=1, experience_reward=15, 
                     loot_table=[healing_potion])
@@ -127,6 +160,17 @@ class World:
                           ])
         dark_cave.add_enemy(cave_troll)
 
+        dark_cave_skeleton = Enemy("Dark cave skeleton", health= 30, max_health= 30, strength= 30, defense= 2, level=5, experience_reward= 75,
+                                    loot_table= [
+                                        bow_and_arrow, 
+                                        healing_potion,
+                                        iron_helmet
+                                        ])
+        dark_cave.add_enemy(dark_cave_skeleton)
+        # TODO: Add more enemies with different stats and loot tables
+        # TODO: Add NPCs to appropriate locations
+        
+        # Place items in locations (apart from enemy loot)
         forest_clearing.add_item(healing_potion)
 
         self.set_starting_location("town_square")
