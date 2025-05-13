@@ -133,6 +133,9 @@ This project is provided for educational purposes only.
 
 ## Version
 
+Version 0.2.2:
+ - AH: Added basic Day/Night system to world, including descriptive messages that show after the player moves locations. Time increments by 10 (1 hour) after certain actions.
+ 
 Version 0.2.1:
  - JS: Added random_event scaffolding and example use case in the World class.
  - BL: Added a new dark cave location with a special encounter. Also added some additional enemy drops.

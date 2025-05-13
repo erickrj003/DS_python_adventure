@@ -17,7 +17,7 @@ class UserInterface:
         print("Explore the world, battle enemies, and become a hero.\n")
         print("This mini-project is the final grade for Mooseheart Data Structures Students.")
         print("There are several TODOs that need to be completed before this game is finished.")
-        print("The current version is 0.0.1. When you accomplish TODOs, the version will increment.")
+        print("The current version is 0.2.2. When you accomplish TODOs, the version will increment.")
         print("=" * self.width)
     
     def get_main_menu_choice(self):
