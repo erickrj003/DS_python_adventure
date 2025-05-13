@@ -68,6 +68,14 @@ class UserInterface:
         """
         self._display_header("INTRODUCTION")
         print(f"Welcome, {player.name}!")
+
+        skip_intro = input("Are you a returning player? yes or no?")
+        if skip_intro == 'yes':
+            print("You skipped the intro. Welcome back!")
+            print("="* self.width)
+            input("\nPress Enter to continue your adventure")
+            return 
+        
         print("You find yourself in a small medieval town, ready to start your adventure.")
         print("Explore the world, complete quests, and battle enemies to become a hero.")
         print("Type 'help' at any time to see available commands.")
@@ -75,6 +83,7 @@ class UserInterface:
         input("\nPress Enter to begin your adventure...")
         
         # TODO: Add option to skip introduction for returning players
+        
     
     def display_location(self, location):
         """
