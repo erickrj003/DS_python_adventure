@@ -76,7 +76,7 @@ class UserInterface:
         
         # TODO: Add option to skip introduction for returning players
     
-    def display_location(self, location):
+    def display_location(self, location, world):
         """
         Display the current location.
         
@@ -85,6 +85,20 @@ class UserInterface:
         """
         self._display_header(location.name)
         print(location.get_description())
+        #TODO: Print out a message that conveys the character's sense of time
+        if (world.time_minutes >= 70 and world.time_minutes <= 120):
+            print("It is Morning.")
+        elif (world.time_minutes > 120 and world.time_minutes <= 160):
+            print("It is Afternoon.")
+        elif (world.time_minutes > 160 and world.time_minutes <= 200):
+            print("It is Evening.")
+        elif (world.time_minutes > 200 and world.time_minutes <= 0):
+            print("It is Dusk.")
+        elif (world.time_minutes > 0 and world.time_minutes <= 40):
+            print("It is Late Night.")
+        elif (world.time_minutes > 40 and world.time_minutes <= 60):
+            print("It is Dawn.")
+        print(world.time_minutes)
     
     def display_inventory(self, player):
         """
