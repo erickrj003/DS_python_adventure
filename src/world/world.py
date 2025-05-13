@@ -20,7 +20,7 @@ class World:
         self.time_of_day = "Day"  # Can be "Day" or "Night"
 
     def update_time(self, minutes_passed=10):
-         """
+        """
         Advance time in the world and update day/night cycle.
         """
         self.time_minutes += minutes_passed

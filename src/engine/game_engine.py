@@ -191,9 +191,6 @@ class GameEngine:
                     self.ui.display_message(health_status)
             else:
                 pass
-
-
-            
             
             # Get player command
             command = self.ui.get_command()
