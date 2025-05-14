@@ -118,7 +118,8 @@ class World:
         forest_path = Location("Forest Path", "A winding path leading into a dark, mysterious forest.")
         forest_clearing = Location("Forest Clearing", "A quiet clearing in the heart of the forest.")
         dark_cave = Location("Dark Cave", "A damp, dark cave with mysterious echoes. It seems dangerous.")
-        
+        cave_depths =  Location("Cave Depths", "The deepest part of the cave with the Final boss and a exit to the next world.")
+        desert_world = Location("Desert word", "A new world that has been unexplored you must beet this world to proceed to the next")
         # TODO: Create more interesting and varied locations (castle, dungeon, mountain, etc.)
         
         # Add locations to the world
@@ -128,6 +129,9 @@ class World:
         self.add_location("forest_path", forest_path)
         self.add_location("forest_clearing", forest_clearing)
         self.add_location("dark_cave", dark_cave)
+        self.add_location("cave_depths", cave_depths)
+        self.add_location("desert_world", desert_world)
+
         
         # Connect locations
         self.connect_locations("town_square", "north", "blacksmith")
@@ -135,14 +139,17 @@ class World:
         self.connect_locations("town_square", "south", "forest_path")
         self.connect_locations("forest_path", "east", "forest_clearing")
         self.connect_locations("forest_clearing", "north", "dark_cave")
-        
+        self.connect_locations("dark_cave", "north", "cave_depths")
+        self.connect_locations("cave_depths", "west", "desert_world")
         # Create items for loot tables
         rusty_sword = Weapon("Rusty Sword", "An old, rusty sword that has seen better days.", 5, 3)
         leather_armor = Armor("Leather Armor", "A simple leather armor that provides basic protection.", 10, 2)
         healing_potion = Consumable("Healing Potion", "A red potion that restores health.", 15, "health", 25)
         strength_potion = Consumable("Strength Potion", "A blue potion that temporarily increases strength.", 20, "strength", 5)
         bow_and_arrow = Weapon("Bow and Arrow", "A bow and arrows dropped from dark skeletons used to shoot from a distance.", 15, 5)
-        iron_helmet= Armor("A iron helmet", "a strong helmet used for head protection.,", 15, 4)
+        iron_helmet = Armor("A iron helmet", "a strong helmet used for head protection.,", 15, 4)
+        diamond_axe = Weapon("A diamond sword", "a strong sword that can be aquired after beating the first boss", 24, 3)
+        
 
         
         # Create enemies and add them to locations
