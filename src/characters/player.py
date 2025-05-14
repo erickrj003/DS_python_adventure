@@ -1,6 +1,7 @@
 # Player class (inherits from Character)
 
 from characters.character import Character
+import random
 
 class Player(Character):
     """
@@ -176,6 +177,18 @@ class Player(Character):
         if self.equipped_weapon:
             damage += self.equipped_weapon.damage_bonus
             
+        # based on crit chance, potentially multiply total damage if the crit value is rolled
+        roll = random.randint(1,100)
+        if roll < self.critical_chance:
+            damage = damage*2
+            print("You did double the damage!")
+        elif roll > 95:
+            damage = 0
+            print("Your enemy dodged your attack")
+        # TODO: Expend miss and crit chance logic
+            
+
+
         return target.take_damage(damage)
     
     def take_damage(self, amount):
