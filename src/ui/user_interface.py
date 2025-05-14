@@ -17,7 +17,7 @@ class UserInterface:
         print("Explore the world, battle enemies, and become a hero.\n")
         print("This mini-project is the final grade for Mooseheart Data Structures Students.")
         print("There are several TODOs that need to be completed before this game is finished.")
-        print("The current version is 0.0.1. When you accomplish TODOs, the version will increment.")
+        print("The current version is 0.2.2. When you accomplish TODOs, the version will increment.")
         print("=" * self.width)
     
     def get_main_menu_choice(self):
@@ -85,7 +85,7 @@ class UserInterface:
         # TODO: Add option to skip introduction for returning players
         
     
-    def display_location(self, location):
+    def display_location(self, location, world):
         """
         Display the current location.
         
@@ -94,6 +94,20 @@ class UserInterface:
         """
         self._display_header(location.name)
         print(location.get_description())
+        #TODO: Print out a message that conveys the character's sense of time
+        if (world.time_minutes >= 70 and world.time_minutes <= 120):
+            print("It is Morning.")
+        elif (world.time_minutes > 120 and world.time_minutes <= 160):
+            print("It is Afternoon.")
+        elif (world.time_minutes > 160 and world.time_minutes <= 200):
+            print("It is Evening.")
+        elif (world.time_minutes > 200 and world.time_minutes <= 0):
+            print("It is Dusk.")
+        elif (world.time_minutes > 0 and world.time_minutes <= 40):
+            print("It is Late Night.")
+        elif (world.time_minutes > 40 and world.time_minutes <= 60):
+            print("It is Dawn.")
+        print(world.time_minutes)
     
     def display_inventory(self, player):
         """
