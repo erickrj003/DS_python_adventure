@@ -1,11 +1,16 @@
 # World class
 import random
+from characters.player import Player
 from world.location import Location
 from characters.enemy import Enemy
 from items.weapon import Weapon
 from items.armor import Armor
 from items.consumable import Consumable
+from ui.user_interface import UserInterface
 
+
+# Player is only defined in the game_engine script, I don't know how to access that specific player object outside of the game_engine script
+# I will have to call the random event script from the game_engine
 class World:
     """
     World class that manages all locations and the game world state.
@@ -13,23 +18,29 @@ class World:
     
     def __init__(self):
         """Initialize a new World."""
+        self.ui = UserInterface()
         self.locations = {}
         self.starting_location = None
-        # TODO: Add weather system that affects gameplay (e.g., rain slows movement, snow reduces visibility)
-
-    def random_event(self):
+        # TODO: Add weather system that affects gameplay (e.g.,rain slows movement, snow reduces visibility)
+        # Depending on what the current weather is, different types of natural disasters could happen
+        # Player can check the weather
+        # If weather can affect our speed, we should
+        # Whenever you travel to a new place, the ui system displays the current weather
+        # Weather: Rainy, Sunny, Cloudy, Stormy,    
+    def random_event(self, player):
     # Random Event
         chance = random.randint(100,101)
         if chance >= 1 and chance <= 74: # 75% chance that nothing will happen
             pass
         elif chance >= 75 and chance <= 89: # 15% chance of getting robbed
             self.ui.display_message("You have been robbed!")
+            # player.lose_money(random.randinit(5-15), "Robber")
             # Player should lose money and items
         else:
             self.ui.display_message("You have been struck by lightning!")
-            damage = self.player.take_damage(random.randint(10,20))
+            damage = player.take_damage(random.randint(10,20))
             self.ui.display_message(f"You took {damage} damage!")
-            # Player should lose health
+
     
     def add_location(self, location_id, location):
         """
@@ -51,7 +62,7 @@ class World:
         Returns:
             Location or None: The location with the given ID or None if not found
         """
-        self.random_event()
+
         return self.locations.get(location_id)
     
     def set_starting_location(self, location_id):
@@ -117,7 +128,7 @@ class World:
             }
             if direction1 in opposites:
                 location2.add_connection(opposites[direction1], location1)
-        
+
         return True
     
     def create_world(self):
@@ -127,12 +138,12 @@ class World:
         TODO: Expand world to include at least 15 locations and 20 connections between them.
         """
         # Create locations
-        town_square = Location("Town Square", "The central square of a small town. People gather here to socialize and trade.")
-        blacksmith = Location("Blacksmith", "A hot, smoky forge where the town's blacksmith works on weapons and armor.")
-        tavern = Location("Tavern", "A cozy tavern where adventurers gather to share tales and information.")
-        forest_path = Location("Forest Path", "A winding path leading into a dark, mysterious forest.")
-        forest_clearing = Location("Forest Clearing", "A quiet clearing in the heart of the forest.")
-        dark_cave = Location("Dark Cave", "A damp, dark cave with mysterious echoes. It seems dangerous.")
+        town_square = Location("Town Square", f"The central square of a small town. People gather here to socialize and trade.\n Current Weather: {town_square.weather}", "Sunny")
+        blacksmith = Location("Blacksmith", "A hot, smoky forge where the town's blacksmith works on weapons and armor.", "Sunny")
+        tavern = Location("Tavern", "A cozy tavern where adventurers gather to share tales and information.", "Cloudy")
+        forest_path = Location("Forest Path", "A winding path leading into a dark, mysterious forest.", "Rainy")
+        forest_clearing = Location("Forest Clearing", "A quiet clearing in the heart of the forest.", "Rainy")
+        dark_cave = Location("Dark Cave", "A damp, dark cave with mysterious echoes. It seems dangerous.", "Cloudy")
         
         # TODO: Create more interesting and varied locations (castle, dungeon, mountain, etc.)
         

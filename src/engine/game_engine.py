@@ -190,7 +190,7 @@ class GameEngine:
                     
                     self.ui.display_message(health_status)
             else:
-                pass
+                self.world.random_event(self.player)
 
 
             

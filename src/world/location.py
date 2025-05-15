@@ -5,7 +5,7 @@ class Location:
     Location class that represents areas in the game world.
     """
     
-    def __init__(self, name, description):
+    def __init__(self, name, description, weather):
         """
         Initialize a new Location.
         
@@ -16,9 +16,13 @@ class Location:
         self.name = name
         self.description = description
         self.npcs = []
+        self.weather = weather
         self.enemies = []
         self.items = []
         self.connections = {}  # Dictionary mapping direction to connected location
+
+    def change_weather(self, new_weather):
+        self.weather = new_weather
         
     def add_connection(self, direction, location):
         """

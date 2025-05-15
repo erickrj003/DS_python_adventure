@@ -6,7 +6,7 @@ class Character:
     for all characters in the game world.
     """
     
-    def __init__(self, name, health=100, max_health=100, strength=10, defense=5):
+    def __init__(self, name, health=100, max_health=100, strength=10, defense=5, money=0):
         """
         Initialize a new Character.
         
@@ -22,6 +22,7 @@ class Character:
         self.max_health = max_health
         self.strength = strength
         self.defense = defense
+        self.money = money
         self.inventory = [] 
         self.char_class = "Character"  # Default class type
         
@@ -100,6 +101,16 @@ class Character:
             self.inventory.remove(item)
             return True
         return False
+    
+    def gain_money(self,amount):
+        # Player could have money multipliers
+
+        return amount
+
+    def lose_money(self,amount, robber):
+        # idk if I should return it as a tuple, but the robber is who stole the mooney from you
+        return amount,robber
+
     
     def __str__(self):
         """Return string representation of the character."""
