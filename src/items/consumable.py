@@ -52,6 +52,10 @@ class Consumable(Item):
         elif self.effect_type == "defense":
             character.defense += self.effect_value
             message += f" {character.name}'s defense increases by {self.effect_value}."
+        
+        elif self.effect_type == "critical chance":
+            character. criticalchance += self.effect_value
+            message += f"{character.name}'s crit increase by {self.effect_value}"
             
         # TODO: Add more effect types (speed, critical chance, etc.)
             

@@ -111,7 +111,7 @@ class GameEngine:
             
             # Display current location
             current_location = self.player.current_location
-            self.ui.display_location(current_location)
+            self.ui.display_location(current_location, self.world)
             
             # Check for enemies
             if current_location.has_enemies():
@@ -200,6 +200,10 @@ class GameEngine:
             
             # Process command
             self.process_command(command)
+
+            # Update the world time
+            self.world.update_time()
+
             # TODO: Add a delay between commands to simulate a more realistic game
             # TODO: Use a helper function to keep the game screen clean
     

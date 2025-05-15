@@ -25,6 +25,7 @@ class Character:
         self.money = money
         self.inventory = [] 
         self.char_class = "Character"  # Default class type
+        self.critical_chance = 5
         
     def is_alive(self):
         """Check if the character is alive."""

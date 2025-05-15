@@ -15,7 +15,7 @@ class World:
     """
     World class that manages all locations and the game world state.
     """
-    
+
     def __init__(self):
         """Initialize a new World."""
         self.ui = UserInterface()
@@ -26,7 +26,21 @@ class World:
         # Player can check the weather
         # If weather can affect our speed, we should
         # Whenever you travel to a new place, the ui system displays the current weather
-        # Weather: Rainy, Sunny, Cloudy, Stormy,    
+        # Weather: Rainy, Sunny, Cloudy, Stormy, Snowy, 
+        # Sunny = 0, Cloudy = 1
+
+        self.time_minutes = 0  # Game time in minutes
+        self.time_of_day = "Day"  # Can be "Day" or "Night"
+
+    def update_time(self, minutes_passed=10):
+        """
+        Advance time in the world and update day/night cycle.
+        """
+        self.time_minutes += minutes_passed
+        if (self.time_minutes // 240) % 2 == 0:
+            self.time_of_day = "Day"
+        else:
+            self.time_of_day = "Night"
     def random_event(self, player):
     # Random Event
         chance = random.randint(100,101)
@@ -42,6 +56,8 @@ class World:
             self.ui.display_message(f"You took {damage} damage!")
 
     
+            # Player should lose health
+
     def add_location(self, location_id, location):
         """
         Add a location to the world.
@@ -51,7 +67,7 @@ class World:
             location (Location): The location to add
         """
         self.locations[location_id] = location
-    
+
     def get_location(self, location_id):
         """
         Get a location by its ID.
@@ -64,7 +80,7 @@ class World:
         """
 
         return self.locations.get(location_id)
-    
+
     def set_starting_location(self, location_id):
         """
         Set the starting location for new players.
@@ -79,7 +95,7 @@ class World:
             self.starting_location = self.locations[location_id]
             return True
         return False
-    
+
     def get_starting_location(self):
         """
         Get the starting location.
@@ -88,7 +104,7 @@ class World:
             Location: The starting location
         """
         return self.starting_location
-    
+
     def connect_locations(self, location1_id, direction1, location2_id, direction2=None):
         """
         Connect two locations bidirectionally.
@@ -106,7 +122,7 @@ class World:
         # Get the locations
         location1 = self.get_location(location1_id)
         location2 = self.get_location(location2_id)
-        
+
         if not location1 or not location2:
             return False
         
@@ -130,7 +146,7 @@ class World:
                 location2.add_connection(opposites[direction1], location1)
 
         return True
-    
+
     def create_world(self):
         """
         Create the world that the player will navigate through.
