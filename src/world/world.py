@@ -16,7 +16,9 @@ class World:
         self.locations = {}
         self.starting_location = None
         # TODO: Add weather system that affects gameplay (e.g., rain slows movement, snow reduces visibility)
-    
+        self.time_minutes = 0  # Game time in minutes
+        self.time_of_day = "Day"  # Can be "Day" or "Night"
+
     def update_time(self, minutes_passed=10):
         """
         Advance time in the world and update day/night cycle.
@@ -143,7 +145,9 @@ class World:
         forest_clearing = Location("Forest Clearing", "A quiet clearing in the heart of the forest.")
         dark_cave = Location("Dark Cave", "A damp, dark cave with mysterious echoes. It seems dangerous.")
         cave_depths =  Location("Cave Depths", "The deepest part of the cave with the Final boss and a exit to the next world.")
-        desert_world = Location("Desert word", "A new world that has been unexplored you must beet this world to proceed to the next")
+        desert_world = Location("Desert world", "A new world that has been unexplored you must beet this world to proceed to the next")
+        dustbowl = Location("Dustbowl", " A abandoned village with a lot of loot and monsters")
+        abandoned_mineshaft= Location("Abandoned Mineshaft", "A shaft that has valuable minerals and recourses able to create new weapons as well as monsters being inside.") 
         # TODO: Create more interesting and varied locations (castle, dungeon, mountain, etc.)
         
         # Add locations to the world
@@ -155,6 +159,8 @@ class World:
         self.add_location("dark_cave", dark_cave)
         self.add_location("cave_depths", cave_depths)
         self.add_location("desert_world", desert_world)
+        self.add_location("dustbowl", dustbowl)
+        self.add_location("abandoned_mineshaft", abandoned_mineshaft)
 
         
         # Connect locations
@@ -165,6 +171,9 @@ class World:
         self.connect_locations("forest_clearing", "north", "dark_cave")
         self.connect_locations("dark_cave", "north", "cave_depths")
         self.connect_locations("cave_depths", "west", "desert_world")
+        self.connect_locations("desert_world", "east", "dustbowl")
+        self.connect_locations("dustbowl", "down", "abandoned_mineshaft")
+        
         # Create items for loot tables
         rusty_sword = Weapon("Rusty Sword", "An old, rusty sword that has seen better days.", 5, 3)
         leather_armor = Armor("Leather Armor", "A simple leather armor that provides basic protection.", 10, 2)
@@ -173,6 +182,7 @@ class World:
         bow_and_arrow = Weapon("Bow and Arrow", "A bow and arrows dropped from dark skeletons used to shoot from a distance.", 15, 5)
         iron_helmet = Armor("A iron helmet", "a strong helmet used for head protection.,", 15, 4)
         diamond_axe = Weapon("A diamond sword", "a strong sword that can be aquired after beating the first boss", 24, 3)
+        chestplate =  Armor("Chesplate", "a piece of armor that will make you undectectable by enmeies", 100, 60 )
         
 
         
@@ -223,6 +233,16 @@ class World:
                                         iron_helmet
                                         ])
         dark_cave.add_enemy(dark_cave_skeleton)
+
+        great_cave_ghost = Enemy("Great Cave Ghost", health= 200, max_health= 200, strength= 50, defense=25, level=20, experience_reward= 500,
+                                    loot_table= [
+                                        bow_and_arrow, 
+                                        healing_potion,
+                                        iron_helmet,
+                                        chestplate,
+                                        diamond_axe
+                                        ])
+        cave_depths.add_enemy(great_cave_ghost)
         # TODO: Add more enemies with different stats and loot tables
         # TODO: Add NPCs to appropriate locations
         

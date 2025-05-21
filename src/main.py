@@ -11,6 +11,6 @@ def main():
     
     # Start the game
     game.start_game()
-
+1
 if __name__ == "__main__":
     main() 
