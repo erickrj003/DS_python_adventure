@@ -103,6 +103,7 @@ class Player(Character):
         self.health = self.max_health
         self.strength += 3
         self.defense += 2
+        
         # TODO: Add Warrior abilities
 
         if self.level == 3:

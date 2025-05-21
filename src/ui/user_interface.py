@@ -94,7 +94,6 @@ class UserInterface:
         """
         self._display_header(location.name)
         print(location.get_description())
-        #TODO: Print out a message that conveys the character's sense of time
         if (world.time_minutes >= 70 and world.time_minutes <= 120):
             print("It is Morning.")
         elif (world.time_minutes > 120 and world.time_minutes <= 160):

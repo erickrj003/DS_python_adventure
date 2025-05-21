@@ -177,6 +177,14 @@ class GameEngine:
                     self.ui.display_message(f"You were defeated by {enemy.name}!")
                     self.running = False
                     break
+
+                elif battle_result == "enemy_fled":
+                    self.ui.display_message(f"{enemy.name} fled!")
+                    self.ui.display_message("You gained 0 experience points.")
+                    break
+
+
+                    
                 else:  # fled
                     self.ui.display_message(f"You fled from {enemy.name}!")
                     # Display player's health after fleeing

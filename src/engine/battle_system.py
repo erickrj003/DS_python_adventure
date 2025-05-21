@@ -49,7 +49,7 @@ class BattleSystem:
                 if action == "attack":
                     damage = player.attack(enemy)
                     # TODO: Change the attack text to be weapon-specific (e.g. "You slash at the goblin with your sword!"). Perhaps generate custom text base on the power of your attack.
-                    # TODO: Add critical hit chance based on random variables (dice roll, etc.)
+
                     # TODO Modify total damage based on enemy defense and armor
                     print(f"You attack {enemy.name} for {damage} damage!")
                     
@@ -125,7 +125,13 @@ class BattleSystem:
                 time.sleep(0.5)  # Small delay for effect
                 
                 # TODO: Add basic AI for enemy combat decisions based on health
-                
+                if enemy.health < 5:
+                    roll = random.randint(1,100)
+                    if roll < 20:
+                        print("The enemy got away")
+                        return "enemy_fled"
+
+            
                 damage, is_critical = enemy.attack(player)
                 
                 if is_critical:
